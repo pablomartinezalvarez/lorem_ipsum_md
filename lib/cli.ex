@@ -21,6 +21,7 @@ defmodule LoremImpsumMd.CLI do
   defp generate_site(opts) do
     case opts[:platform] do
       @glayu -> LoremImpsumMd.Glayu.Generator.generate(opts)
+      @jekyll -> LoremImpsumMd.Jekyll.Generator.generate(opts)
       nil -> LoremImpsumMd.Glayu.Generator.generate(opts)
     end
   end

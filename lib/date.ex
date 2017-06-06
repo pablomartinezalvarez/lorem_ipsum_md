@@ -1,8 +1,13 @@
-defmodule LoremImpsumMd.Glayu.Date do
+defmodule LoremImpsumMd.Date do
 
   def now do
     now = DateTime.utc_now()
     "#{year(now)}-#{month(now)}-#{day(now)} #{hour(now)}:#{minute(now)}:#{second(now)}"
+  end
+
+  def today do
+    now = DateTime.utc_now()
+    "#{year(now)}-#{month(now)}-#{day(now)}"
   end
 
   def second(date_time) do

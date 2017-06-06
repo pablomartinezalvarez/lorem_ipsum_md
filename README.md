@@ -8,9 +8,10 @@ Usage:
 
 $ lorem_ipsum_md  [-Cclp]
 
-Generates a test site populated with "Lorem Ipsum" Markdown articles. 
-
 ```
+
+Generates a test site populated with "Lorem Ipsum" Markdown articles.
+
 
 ### Arguments
 

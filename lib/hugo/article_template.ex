@@ -1,15 +1,14 @@
-defmodule LoremImpsumMd.Glayu.ArticleTemplate do
+defmodule LoremImpsumMd.Hugo.ArticleTemplate do
 
   def tpl(title, categories, tags) do
     """
-    ---
-    title: #{title}
-    date: #{LoremImpsumMd.Date.now}
-    author: Lorem Ipsum Markdown Generator
-    categories: #{format_collection(categories)}
-    tags: #{format_collection(tags)}
-    score: 10
-    ---
+    +++
+    title = \"#{title}\"
+    date = \"#{LoremImpsumMd.Date.today}\"
+    author = \"Lorem Ipsum Markdown Generator\"
+    categories = #{format_collection(categories)}
+    tags = #{format_collection(tags)}
+    +++
     Adipisci et qui quia laudantium consequuntur optio. Ex aliquam non expedita aut sint ut earum. Beatae provident nemo aut aliquam repudiandae consectetur autem.
     Molestiae deleniti explicabo dolor. Qui porro dolorum dolores optio aliquam dolores est et. Harum et excepturi laborum maiores omnis necessitatibus et doloremque.
     Qui nisi culpa numquam rem et aut dolorem. Reprehenderit atque quam est quos aspernatur aut nesciunt esse. Omnis aspernatur mollitia placeat harum dolorem et. Ut et consequuntur nihil nam modi nobis ipsum.
@@ -18,10 +17,20 @@ defmodule LoremImpsumMd.Glayu.ArticleTemplate do
     """
   end
 
-  defp format_collection(collection) do
-    Enum.reduce(collection, "", fn(item, result) ->
-      result <> "\n- " <> item
-    end)
+  defp format_collection(items) do
+    "[" <> add_item_with_delimiter(items) <> "]"
+  end
+
+  defp add_item_with_delimiter([]) do
+    ""
+  end
+
+  defp add_item_with_delimiter([item | more_items]) do
+    if length(more_items) > 0 do
+      "\"" <> item <> "\", " <> add_item_with_delimiter(more_items)
+    else
+      "\"" <> item <> "\"" <> add_item_with_delimiter(more_items)
+    end
   end
 
 end

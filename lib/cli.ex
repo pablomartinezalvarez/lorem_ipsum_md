@@ -4,6 +4,8 @@ defmodule LoremImpsumMd.CLI do
   @jekyll "jekyll"
   @hugo "hugo"
 
+  @defaults [categories: 10, children: 5, levels: 3, platform: "glayu", size: 10_000]
+
   def main(args) do
     args
     |> parse_args
@@ -15,15 +17,20 @@ defmodule LoremImpsumMd.CLI do
       switches: [categories: :integer, children: :integer, levels: :integer, platform: :string, size: :integer],
       aliases: [C: :categories, c: :children, l: :levels, p: :platform, s: :size]
      )
-    opts
+    Keyword.merge(@defaults, opts)
   end
 
   defp generate_site(opts) do
     case opts[:platform] do
       @glayu -> LoremImpsumMd.Glayu.Generator.generate(opts)
       @jekyll -> LoremImpsumMd.Jekyll.Generator.generate(opts)
+      @hugo -> LoremImpsumMd.Hugo.Generator.generate(opts)
       nil -> LoremImpsumMd.Glayu.Generator.generate(opts)
     end
+  end
+
+  defp set_defaults(opts) do
+
   end
 
 end

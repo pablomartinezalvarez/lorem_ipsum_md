@@ -3,6 +3,7 @@ defmodule LoremImpsumMd.CLI do
   @glayu "glayu"
   @jekyll "jekyll"
   @hugo "hugo"
+  @hexo "hexo"
 
   @defaults [categories: 10, children: 5, levels: 3, platform: "glayu", size: 10_000]
 
@@ -25,6 +26,7 @@ defmodule LoremImpsumMd.CLI do
       @glayu -> LoremImpsumMd.Glayu.Generator.generate(opts)
       @jekyll -> LoremImpsumMd.Jekyll.Generator.generate(opts)
       @hugo -> LoremImpsumMd.Hugo.Generator.generate(opts)
+      @hexo -> LoremImpsumMd.Hexo.Generator.generate(opts)
       nil -> LoremImpsumMd.Glayu.Generator.generate(opts)
     end
   end

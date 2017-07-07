@@ -26,7 +26,7 @@ defmodule LoremImpsumMd.Jekyll.Generator do
     num_articles = div(args[:size], args[:categories] * args[:children] * max(args[:levels] - 1, 1))
     Enum.map(1..num_articles, fn n ->
       Task.async(fn ->
-        title = List.last(category_tokens) <> "_" <> "art_" <> to_string(n)
+        title = List.last(category_tokens) <> "-" <> "art-" <> to_string(n)
         File.write(Path.join(posts_folder(), LoremImpsumMd.Date.today() <> "-" <> title <> ".md"), LoremImpsumMd.Jekyll.ArticleTemplate.tpl(title, category_tokens, []))
       end)
     end)

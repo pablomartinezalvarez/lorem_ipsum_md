@@ -6,7 +6,6 @@ defmodule LoremImpsumMd.Jekyll.ArticleTemplate do
     layout: post
     title: #{title}
     date: #{LoremImpsumMd.Date.now}
-    categories: [Retro Games, Sega, Genesis]
     author: Lorem Ipsum Markdown Generator
     categories: #{inspect categories}
     tags: #{inspect tags}
